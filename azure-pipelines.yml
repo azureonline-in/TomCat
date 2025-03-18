@@ -25,6 +25,6 @@ steps:
     TomcatUrl: 'http://azuronline.eastus.cloudapp.azure.com/'
     Username: 'deployer'
     Password: 'deployer'
-    Warfile: 'target/mvnwebapp.war'
+    Warfile: '/home/vsts/work/1/s/target/mvnwebapp.war'
     Context: '/azure-deploy'
     ServerVersion: '7OrAbove'
