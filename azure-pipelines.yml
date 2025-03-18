@@ -20,11 +20,12 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-- task: TomcatDeployment@1
+
+- task: CopyFilesOverSSH@0
   inputs:
-    TomcatUrl: 'http://azuronline.eastus.cloudapp.azure.com/'
-    Username: 'deployer'
-    Password: 'deployer'
-    Warfile: '/home/vsts/work/1/s/target/mvnwebapp.war'
-    Context: '/azure-deploy'
-    ServerVersion: '7OrAbove'
+    sshEndpoint: 'TomCatDeployment' 
+    sourceFolder: '$(Build.SourcesDirectory)/target' 
+    contents: '*.war'  
+    targetFolder: '/var/lib/tomcat10/webapps' 
+    readyTimeout: '20000'
+  displayName: 'Copy WAR File to VM'
